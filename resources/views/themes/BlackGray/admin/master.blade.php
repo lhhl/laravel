@@ -22,15 +22,29 @@
 					arr.push($(this).val());
 				});
 
-				$( '#idRecord' ) . val( arr );
-				temp = $('[name = "formEdit"]') . attr( "action" ) . split('/');
-				temp[ temp.length - 2 ] = arr[ arr.length - 1 ];
+				$( '.idRecord' ) . val( arr );
 
-				$('[name = "formEdit"]') . attr( "action", temp . join('/') );
-				console.log( temp . join() );
+				$newLink = generateLink( $('[name = "formEdit"]') . attr( "action" ) );
+				$('[name = "formEdit"]') . attr( 'action', $newLink );
+
+				$newLink = generateLink( $('[name = "formDefault"]') . attr( "action" ) );
+				$('[name = "formDefault"]') . attr( 'action', $newLink );
 			});
+
+			function generateLink( currLink ){
+				var temp = currLink . split('/');
+				temp[ temp.length - 2 ] = arr[ arr.length - 1 ];
+				return temp . join('/');
+			}
 		});
 	</script>
+	<style>
+		.red { color: red; }
+		.green { color: green; }
+		.lightgray { color: lightgray; }
+		.glyphicon { font-size: 18px }
+		.pointer :hover { cursor: pointer; }
+	</style>
 </head>
 <body>
 @yield('pageContent')

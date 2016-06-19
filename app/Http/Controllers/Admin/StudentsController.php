@@ -9,9 +9,9 @@ use App\Students;
 
 class StudentsController extends AdminPatternController
 {
-	function __construct(){
-		parent::__construct();
+	function __construct( Request $request){
 		$this->model = new Students;
+		parent::__construct( $request );
 		$this->alias .= 'Students';
 		$this->orderBy = [ 'age', 'ASC' ];
 		$this->formRender = [

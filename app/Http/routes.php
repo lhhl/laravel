@@ -15,13 +15,17 @@ Route::get('/', function () {
 return view('welcome');
 });
 Route::group( [ 'namespace' => 'Admin' ], function(){
+	Route::resource( '{api?}/admin/students','StudentsController' );
 	Route::resource( 'admin/students','StudentsController' );
 	Route::post( 'students/multidestroy', 'StudentsController@multidestroy' );
 
+	Route::resource( 'api/admin/customers','CustomersController' );
 	Route::resource( 'admin/customers','CustomersController' );
 	Route::post( 'customers/multidestroy', 'CustomersController@multidestroy' );
+	Route::post( 'customers/changedisplay', 'CustomersController@changedisplay' );
+	Route::get( 'customers/{id}/setdefault/', 'CustomersController@setdefault' );
+	Route::get( 'customers/swapsort/{id1}/{id2}', 'CustomersController@swapsort' )->name( 'customers.swapsort' );
 } );
-
 
 Route::get( 'clearsession', 'Admin\AdminPatternController@clearSession' );
 

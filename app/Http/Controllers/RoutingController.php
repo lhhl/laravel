@@ -8,34 +8,36 @@ use App\Http\Requests;
 
 class RoutingController extends Controller
 {
-    public function index( Request $request, $controller, $func = NULL ){
-    	$controllerObj = new Admin\StudentsController;
+    public function webAdmin( Request $request, $class, $func = NULL ){
+    	$controllerObj = new Admin\CustomersController;
+
+        echo '$controllerObj->' . $func . '();';
+        return eval( '$controllerObj->' . $func . '();' );
+
+
     				
-    	if( is_null( $func ) )
-    	{
-    		switch ( $request->method() ) {
-    			case 'GET':
-    				return $controllerObj->index();
-    				break;
+    	// if( is_null( $func ) )
+    	// {
+    	// 	switch ( $request->method() ) {
+    	// 		case 'GET':
+    	// 			return $controllerObj->index();
+    	// 			break;
     			
-    			case 'POST':
-    				return $controllerObj->store();
-    				break;
+    	// 		case 'POST':
+    	// 			return $controllerObj->store();
+    	// 			break;
 
-    			case 'PUT':
-    				return $controllerObj->update();
-    				break;
+    	// 		case 'PUT':
+    	// 			return $controllerObj->update();
+    	// 			break;
 
-    			case 'DELETE':
-    				return $controllerObj->destroy();
-    				break;
-    		}
-    	}else{
+    	// 		case 'DELETE':
+    	// 			return $controllerObj->destroy();
+    	// 			break;
+    	// 	}
+    	// }else{
     		
-    	}
+    	// }
     	
-    	echo 'Method: ' . $request->method();
-    	echo 'Controller: ' . $controller;
-    	echo 'Function: ' . $func;
     }
 }

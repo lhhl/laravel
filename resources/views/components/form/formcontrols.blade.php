@@ -29,8 +29,14 @@
 	    @if( $value[ 'type' ] == 'radio' )
 	    <p style="margin-left: 10px">
 	    	@foreach( (array)$value[ 'default_value' ] as $k => $v )
-	    		{{ Form::radio($key, $k, false) }} {{$v}} &nbsp;&nbsp;
+	    		{{ Form::radio($key, $k) }} {{$v}} &nbsp;&nbsp;
 	    	@endforeach
+	    </p>
+	    @endif
+
+	    @if( $value[ 'type' ] == 'checkbox' )
+	    <p style="margin-left: 10px">
+	    		{{ Form::checkbox($key, 1) }} {{ $value[ 'default_value' ] }}
 	    </p>
 	    @endif
 	@endif

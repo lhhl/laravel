@@ -7,14 +7,15 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Customers;
 
+
 class CustomersController extends AdminPatternController
 {
-    function __construct(){
-		parent::__construct();
+    function __construct( Request $request ){
 		$this->model = new Customers;
 		$this->alias .= 'Customers';
-		$this->orderBy = [ 'data_sort', 'DESC' ];
-		$this->colDisplay = [ 'id', 'name', 'age', 'data_display as display', 'data_default as default' ];
+		$this->orderBy = [ 'data_sort', 'ASC' ];
+		$this->colDisplay = [ 'id', 'name', 'age', 'data_display', 'data_default', 'data_sort' ];
+		$this->defaultColSearch = 'name';
 		$this->formRender = [
 			'name' => [
 				'title' => 'Customer\'s Name',
@@ -30,15 +31,15 @@ class CustomersController extends AdminPatternController
 			'data_display' => [
 				'title' => 'Customer\'s Display',
 				'type' => 'radio',
-				'default_value' => $this->lang[ 'text_control' ][ 'display_radio' ],
+				'default_value' => [ 1 => 'Show', 0 => 'Hide' ],
 				'validate' => 'required',
 				'placeholder' => 'Enter Customer\'s Display',
 			],
 			'data_default' => [
 				'title' => 'Customer\'s Default',
-				'type' => 'radio',
-				'default_value' => $this->lang[ 'text_control' ][ 'default_radio' ],
-				'validate' => 'required',
+				'type' => 'checkbox',
+				
+				
 				'placeholder' => 'Enter Customer\'s Default',
 			],
 			'data_sort' => [
@@ -50,5 +51,6 @@ class CustomersController extends AdminPatternController
 			],
 
 		];
+		parent::__construct( $request );
 	}
 }

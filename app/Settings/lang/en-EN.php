@@ -1,5 +1,5 @@
 <?php
-define( 'APPTEXT', serialize([
+define( 'BACKEND_TEXT', serialize([
 	'message' 		=> 	[
 		"required"	=> strtoupper(":attribute") . " is required",
 		"size" 		=> strtoupper(":attribute") . " from :min to :max",
@@ -7,18 +7,35 @@ define( 'APPTEXT', serialize([
 	'text_control' 	=>	[
 		'add_button' 		=>		'Add new',
 		'del_button' 		=>		'Delete',
-		'display_button' 	=>		'Display',
+		'display_button' 	=>		'Change display',
+		'default_button' 	=>		'Set as default',
 		'edit_button' 		=>		'Edit',
 		'update_button' 	=>		'Update',
 		'cancel_button' 	=>		'Cancel',
 		'back_button' 		=>		'Back',
-		'display_radio'		=>		[ 1 => 'Show', 0 => 'Hide' ],
-		'default_radio'		=>		[ 1 => 'Yes', 0 => 'No' ],
+		'search_button' 	=>		'Search',
 	],
 	'error'	=>	[
-		'not_found_record'	=>		'Record is not found'
+		'recordNotFound'	=>		'Record is not found',
+		'insert'	=>		'Can\'t insert database',
+		'update'	=>		'Can\'t update database',
+		'delete'	=>		'Can\'t delete database',
+		'changDisplay'	=>		'Can\'t change display',
+		'changSort'	=>		'Can\'t change sort',
+		'setDefault'	=>		'Can\'t set default',
+	],
+	'success'	=>	[
+		'insert'	=>		'Insert successfully',
+		'update'	=>		'Update successfully',
+		'delete'	=>		'Delete successfully',
+		'changeDisplay'	=>		'Change display successfully',
+		'changeSort'	=>		'Change position successfully',
+		'setDefault'	=>		'Set as default successfully',
+	],
+	'warning'	=>	[
+		'noRecord'	=>		'There is no record to display'
 	],
 	'info'	=>	[
-		'no_record'	=>		'There is no record to display'
+		'noRecord'	=>		'There is no record to display'
 	],
 ]) );

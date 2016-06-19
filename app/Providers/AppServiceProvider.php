@@ -15,7 +15,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Form::component('generate', 'components.form.formcontrols', [ 'formRender', 'alias', 'page' ]);
-        Form::component('feature', 'components.form.featureform', [ 'textControl', 'alias', 'showable'  ]);
+        Form::component('feature', 'components.form.featureform', [ 'textControl', 'alias', 'showable', 'search'  ]);
     }
 
     /**
