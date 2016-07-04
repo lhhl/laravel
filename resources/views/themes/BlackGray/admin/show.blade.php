@@ -18,10 +18,10 @@
 		<thead>
 			<tr>
 				@if( isset( $list[0]['original'] ) )
-					<th>&nbsp;</th>
+					<th><input type="checkbox" class="itemCheckAll" name="itemCheckAll" value="1"></th>
 					@foreach ($list[0]['original'] as $key => $value)
 						@if( $key == 'data_display' ||  $key == 'data_sort' || $key == 'data_default')
-							<th style="text-transform:uppercase; font-weight: bold; width: 5%; ">{{$key}}</th>
+							<th style="text-transform:uppercase; font-weight: bold; width: 5%; ">&nbsp;</th>
 						@else
 							<th style="text-transform:uppercase; font-weight: bold">{{$key}}</th>
 						@endif
@@ -36,7 +36,7 @@
 				@foreach( $list as $index => $item )
 				
 				<tr>
-					<td><input type="checkbox" class="itemCheck" name="selected_item" value="{{ $item->id }}"></td>
+					<td><input type="checkbox" class="itemCheck" name="itemCheck" value="{{ $item->id }}"></td>
 					@foreach( $item['original'] as $key => $value )
 
 						@if( $key == 'data_display' )

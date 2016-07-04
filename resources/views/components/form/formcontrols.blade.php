@@ -26,6 +26,23 @@
 	    	{{ Form::number($key, $value[ 'default_value' ], ['class' => 'form-control', 'placeholder' => $value[ 'placeholder' ]]) }}
 	    @endif
 
+	    @if( $value[ 'type' ] == 'select' )
+	    	{{ Form::select($key, array_merge([ '' => '--Select--' ], $value[ 'default_value' ]->toArray()), null, ['class' => 'form-control' ]) }}
+	    @endif
+
+	    @if( $value[ 'type' ] == 'file' )
+	    	<p style="margin-left: 10px">
+	    	{!! Form::button( $value[ 'default_value' ], [ 'class' => 'btn btn-success', 'btname' => 'fileButton' ] ) !!}
+	    	{!! Form::button( 'Remove', [ 'class' => 'btn btn-danger', 'name' => 'removeImg' ] ) !!}
+	    	</p>
+	    	<div class="panel panel-success" style="margin-top: 10px;">
+				<div class="panel-heading">Image Preview</div>
+				<div class="panel-body imgPreview"><p align="center">Loading...</p></div>
+            </div>
+
+	    	{!! Form::hidden( $key ) !!}
+	    @endif
+
 	    @if( $value[ 'type' ] == 'radio' )
 	    <p style="margin-left: 10px">
 	    	@foreach( (array)$value[ 'default_value' ] as $k => $v )

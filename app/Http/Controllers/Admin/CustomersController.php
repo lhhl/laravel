@@ -6,12 +6,13 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Customers;
-
+use App\Students;
 
 class CustomersController extends AdminPatternController
 {
     function __construct( Request $request ){
 		$this->model = new Customers;
+		$student = new Students;
 		$this->alias .= 'Customers';
 		$this->orderBy = [ 'data_sort', 'ASC' ];
 		$this->colDisplay = [ 'id', 'name', 'age', 'data_display', 'data_default', 'data_sort' ];
@@ -28,6 +29,17 @@ class CustomersController extends AdminPatternController
 				'validate' => 'required',
 				'placeholder' => 'Enter Customer\'s Age',
 			],
+			'student' => [
+				'title' => 'Customer\'s Student',
+				'type' => 'select',
+				'default_value' => $student::pluck( 'name', 'id' ),
+				'validate' => 'required',
+				'placeholder' => 'Enter Customer\'s Student',
+			],
+			'image_name' => [
+				'title' => 'Customer\'s Image',
+				'type' => 'file',
+			],
 			'data_display' => [
 				'title' => 'Customer\'s Display',
 				'type' => 'radio',
@@ -38,7 +50,7 @@ class CustomersController extends AdminPatternController
 			'data_default' => [
 				'title' => 'Customer\'s Default',
 				'type' => 'checkbox',
-				
+				'default_value' => 'Default',
 				
 				'placeholder' => 'Enter Customer\'s Default',
 			],

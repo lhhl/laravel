@@ -16,6 +16,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Form::component('generate', 'components.form.formcontrols', [ 'formRender', 'alias', 'page' ]);
         Form::component('feature', 'components.form.featureform', [ 'textControl', 'alias', 'showable', 'search'  ]);
+        Form::component('uploader', 'components.form.uploader', [  ]);
     }
 
     /**

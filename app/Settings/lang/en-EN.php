@@ -14,6 +14,7 @@ define( 'BACKEND_TEXT', serialize([
 		'cancel_button' 	=>		'Cancel',
 		'back_button' 		=>		'Back',
 		'search_button' 	=>		'Search',
+		'file_button' 		=>		'Upload file',
 	],
 	'error'	=>	[
 		'recordNotFound'	=>		'Record is not found',

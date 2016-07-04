@@ -16,6 +16,7 @@ class CreateCustomersTable extends Migration
             $table->increments('id');
             $table->string( 'name' );
             $table->integer( 'age' );
+            $table->text('image_name');
             $table->boolean( 'data_display' );
             $table->integer( 'data_sort' );
             $table->boolean( 'data_default' );

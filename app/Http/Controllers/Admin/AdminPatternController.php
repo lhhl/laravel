@@ -11,6 +11,8 @@ use Session;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\APIController;
 use Paginator;
+use Illuminate\Support\Facades\Input;
+use File;
 
 class AdminPatternController extends Controller
 {
@@ -227,6 +229,14 @@ class AdminPatternController extends Controller
         return redirect()->action( $this->alias . 'Controller@index', [ 'page' => session( 'page' ), 'search' => session( 'search' ) ] );
     }
 
+    public function upload(Request $request){
+        $file = Input::file('image');
+        $extension = $file->getClientOriginalExtension();
+        $fileName = time() . '.' . $extension;
+        $file->move('images/', $fileName);
+        //return redirect()->action( $this->alias . 'Controller@create' );
+    }
+
     public function generateFormRenderArr( $edit = false ){
         $textControl = $this->lang['text_control'];
         $arr = [
@@ -253,6 +263,10 @@ class AdminPatternController extends Controller
 
                 if ( $formRender[$key]['placeholder'] == ''){
                     $formRender[$key]['placeholder'] = 'Please enter ' . ucfirst( $key );
+                }
+
+                if ( $formRender[$key]['type'] == 'file'){
+                    $formRender[$key]['default_value'] = $textControl[ 'file_button' ];
                 }
             }
         }
@@ -395,6 +409,31 @@ class AdminPatternController extends Controller
         $arr_temp[1] = $search;
 
         return $arr_temp;
+    }
+
+    public function storeImage()
+    {
+        $fileNameArr = [];
+        foreach (File::allFiles('images') as $file) {
+            $fileNameArr[] = $file->getFileName();
+        }
+        return $fileNameArr;
+    }
+
+    public function clearImage(Request $request)
+    {
+        $imageNameArr = (array) $request->get('imageName');
+        foreach ($imageNameArr as $fileName) {
+            if (File::exists('images/' . $fileName)) {
+                File::delete('images/' . $fileName);
+            }
+        }
+        return 'OK';
+    }
+
+    public function curl()
+    {
+        
     }
 
 }

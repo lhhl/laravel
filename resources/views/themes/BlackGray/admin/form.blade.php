@@ -23,4 +23,5 @@
 	@endif
 		{!! Form::generate( $formRender, $alias, $page ) !!}	
 		{!! Form::close() !!}
+		{!! Form::uploader() !!}
 @stop
